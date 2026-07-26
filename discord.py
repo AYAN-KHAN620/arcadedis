@@ -1337,72 +1337,34 @@ def on_message(ws, message, token, bot_state):
 
 app = Flask(__name__)
 
+
 @app.route("/")
-def dashboard():
-    usernames = []
-
-    for token in BOT_TOKENS:
-        try:
-            info = get_bot_info(token)
-            if info:
-                usernames.append(info.get("username", "Unknown"))
-        except:
-            usernames.append("Offline")
-
-    html = f"""
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="refresh" content="5">
-<title>SINISTERS ⚡ SX⁷</title>
-<style>
-body {{
-    background:#f4f1ea;
-    font-family:Consolas,monospace;
-    margin:0;
-}}
-
-.header {{
-    background:white;
-    text-align:center;
-    padding:25px;
-    font-size:34px;
-    font-weight:bold;
-    border-bottom:3px solid #222;
-    letter-spacing:2px;
-}}
-
-.container {{
-    width:90%;
-    margin:30px auto;
-}}
-
-.card {{
-    background:white;
-    border:2px solid #222;
-    border-radius:12px;
-    padding:18px;
-    margin-bottom:15px;
-    font-size:22px;
-    box-shadow:4px 4px 0px #222;
-}}
-</style>
-</head>
-
-<body>
-
-<div class="header">
-SINISTERS ⚡ SX⁷
-</div>
-
-<div class="container">
-{''.join(f'<div class="card">{u}</div>' for u in usernames)}
-</div>
-
-</body>
-</html>
-"""
-    return html
+def home():
+    return """
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>SINISTERS ⚡ SX⁷</title>
+        <style>
+            body{
+                margin:0;
+                height:100vh;
+                display:flex;
+                justify-content:center;
+                align-items:center;
+                background:#000;
+                color:#fff;
+                font-family:Arial,Helvetica,sans-serif;
+                font-size:48px;
+                font-weight:bold;
+            }
+        </style>
+    </head>
+    <body>
+        SINISTERS ⚡ SX⁷
+    </body>
+    </html>
+    """
 
 def flask_server():
     app.run(
