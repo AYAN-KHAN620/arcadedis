@@ -1424,7 +1424,7 @@ def self_ping_loop():
 
 def run_bot(token):
     bot_state = BotState()
-    bot_state.SUDO_USERS = load_sudo(bot_state)
+    bot_state.SUDO_USERS = SUDO_USERS.copy()
     bot_id = get_bot_id_from_token(token)
     
     if not bot_id:
